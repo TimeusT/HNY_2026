@@ -1,39 +1,47 @@
+document.addEventListener('DOMContentLoaded', () => {
+    document.body.classList.add('fade-in');
+    loadLetter();
+});
+
+function fadeNavigate(url) {
+    document.body.classList.remove('fade-in');
+    document.body.classList.add('fade-out');
+
+    setTimeout(() => {
+        window.location.href = url;
+    }, 600);
+}
+
 async function loadLetter() {
     const code = localStorage.getItem('accessCode');
-    
-    if (!code) {
-        // No code found, redirect back to index
-        window.location.href = 'index.html';
-        return;
-    }
+    if (!code) return;
 
     try {
-        // Load the messages from JSON file
-        const response = await fetch('messages.json');
+        const response = await fetch('../JSON/nym.json');
         const data = await response.json();
-        
-        // Find the message for this code
-        const userMessage = data.messages.find(msg => msg.code === code);
-        
-        if (userMessage) {
-            // Display the personalized message
-            document.getElementById('welcomeText').textContent = `Welcome to 2026 ${userMessage.name}!`;
-            document.getElementById('messageContent').textContent = userMessage.NYL25;
-        } else {
-            // Invalid code, redirect back with error
+
+        const userMessage = data.new_year_messages.find(
+            msg => msg.code === code
+        );
+
+        if (!userMessage) {
             localStorage.removeItem('accessCode');
-            window.location.href = 'index.html';
+            fadeNavigate('../index.html');
+            return;
         }
-    } catch (error) {
-        console.error('Error loading messages:', error);
-        window.location.href = 'index.html';
+
+        document.getElementById('welcomeText').textContent =
+            `Welcome to 2026 ${userMessage.name}!`;
+
+        document.getElementById('messageContent').textContent =
+            userMessage.NYL25;
+
+    } catch (err) {
+        console.error(err);
     }
 }
 
 function goBack() {
     localStorage.removeItem('accessCode');
-    window.location.href = 'index.html';
+    fadeNavigate('../index.html');
 }
-
-// Load the letter when page loads
-loadLetter();

@@ -181,3 +181,17 @@ button:active {
         font-size: 1em;
     }
 }
+
+/* Page transition */
+body {
+    opacity: 0;
+    transition: opacity 0.6s ease;
+}
+
+body.fade-in {
+    opacity: 1;
+}
+
+body.fade-out {
+    opacity: 0;
+}
