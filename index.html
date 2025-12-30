@@ -1,18 +1,22 @@
 <!DOCTYPE html>
-<html lang="eng">
-    <script src="index.js"></script>
-    <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="index.css">
-        <link rel="icon" type="image" href="Images/icon.jpg">
-        <title>Happy New Year!</title> 
-    </head>
-    <body>
-        <h1>Welcome to the Home Page!</h1>
-        <p>What is your code?</p>
-        <div class="input-box">
-            <input type="text" id="inputCode" name="inputCode">
-            <button id="confirm_btn">Confirm</button>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Year Letters</title>
+    <link rel="stylesheet" href="/CSS/index.css">
+</head>
+<body>
+    <div class="container">
+        <div id="codePage" class="code-entry-page">
+            <h1 class="code-title">🎉 New Year Letters 🎉</h1>
+            <p class="subtitle">Enter your secret code to view your letter</p>
+            <input type="text" id="codeInput" placeholder="Enter code" maxlength="5">
+            <button onclick="checkCode()">Unlock Letter</button>
+            <div class="error-message" id="errorMessage"></div>
         </div>
-    </body>
+    </div>
+
+    <script src="/Scripts/NYL_25.js"></script>
+</body>
 </html>
