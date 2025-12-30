@@ -18,7 +18,7 @@ async function loadLetter() {
         if (userMessage) {
             // Display the personalized message
             document.getElementById('welcomeText').textContent = `Welcome to 2026 ${userMessage.name}!`;
-            document.getElementById('messageContent').textContent = userMessage.message;
+            document.getElementById('messageContent').textContent = userMessage.NYL25;
         } else {
             // Invalid code, redirect back with error
             localStorage.removeItem('accessCode');
